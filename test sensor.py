@@ -3,10 +3,10 @@ import time
 
 a=b=c=d=0
 
-sensor1 = 8
-sensor2 = 22
-sensor3 = 18
-sensor4 = 16
+sensor1 = 6
+sensor2 = 13
+sensor3 = 19
+sensor4 = 26
 
 sensors = {
     "sensor1":sensor1,

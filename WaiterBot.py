@@ -168,11 +168,12 @@ def destroy():
 #Robot car moves along the black line
 def tracking():
     tn = int(input("Table No:"))
+    print("Going to Table:", tn)
     y = 0
     x = 0
     while True:
         dist = distance()
-        if(dist < 30):
+        if(dist < 5):
             stop()
             print("stop")
             time.sleep(0.5)
@@ -181,13 +182,12 @@ def tracking():
             lf=str(lf1)+str(lf2)+str(lf3)+str(lf4)
             print (lf)
             if(lf=='0000'):
-                #set_speed(high_speed,high_speed)
                 go_back(25)
                 continue
             if(lf == '1111' and x == 0 and y == 0 and (tn == 1 or tn == 3)):
                 x += 1
-                turn_left(40)
-                time.sleep(1.2)
+                turn_left(38)
+                time.sleep(1)
             if(lf == '1111' and x == 1 and (tn == 1 or tn == 3)):
                 y += 1
                 time.sleep(1)
@@ -201,31 +201,42 @@ def tracking():
                 time.sleep(0.2)
                 print("Arrived Table 3!")
                 break
+            if(lf == '1111' and x == 0 and y == 0 and (tn == 2 or tn == 4)):
+                x += 1
+                turn_right(32)
+                time.sleep(0.5)
+            if(lf == '1111' and x == 1 and (tn == 2 or tn == 4)):
+                y += 1
+                time.sleep(0.5)
+            if(lf == '1111' and y == 2 and tn == 2):
+                stop()
+                print("Arrived Table 2!")
+                break
+            if(lf == '1111' and y == 3 and tn == 4):
+                stop()
+                print("Arrived Table 4!")
+                break
             
             if(lf=='0110'):
-                go_forward(30)
+                go_forward(35)
                 continue
-            
-        #         if(lf=='0100' or lf=='0010'):
-        #             go_forward(25)
-        #             continue
-            
+                
             if(lf=='0111' or lf=='0001'):
-                turn_right(30)
+                turn_right(35)
                 continue
             
             if(lf=='1000' or lf=='1110'):
-                turn_left(30)
+                turn_left(35)
                 continue
             
             if(lf=='0011'):
-        #             #set_speed(low_speed,low_speed)
-                turn_right(35)
+            #             #set_speed(low_speed,low_speed)
+                turn_right(33)
                 continue
         #         
             if(lf=='1100'): 
         #             set_speed(mid_speed,mid_speed)
-                turn_left(35)
+                turn_left(33)
                 continue
         #         
             else:
@@ -234,9 +245,9 @@ def tracking():
             
 if __name__ == '__main__':
     try:
-	#start to line follow
+    #start to line follow
         tracking()
     except KeyboardInterrupt:
-	#robot car stop
+    #robot car stop
         destroy()
 

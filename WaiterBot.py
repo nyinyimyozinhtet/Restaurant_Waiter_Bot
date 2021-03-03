@@ -52,12 +52,6 @@ GPIO.setup(r1,GPIO.IN)
 GPIO.setup(r2,GPIO.IN)
 
 
-#PWM
-h=30 #pwm high
-m=25  #pwm medium
-l=45#pwm low
-s=0
-
 p1 = GPIO.PWM(ena,1000)
 p2 = GPIO.PWM(enb,1000)
 
@@ -159,7 +153,7 @@ def stop():
     GPIO.output(in3,GPIO.LOW)
     GPIO.output(in4,GPIO.LOW)
 
-#Reset PCA9685's all channels    
+#Reset all channels    
 def destroy():
     GPIO.cleanup()
     #p1.start(s)
@@ -169,8 +163,8 @@ def destroy():
 def tracking():
     tn = int(input("Table No:"))
     print("Going to Table:", tn)
-    y = 0
-    x = 0
+    tnc = 0
+    tdc = 0
     while True:
         dist = distance()
         if(dist < 5):
@@ -184,35 +178,35 @@ def tracking():
             if(lf=='0000'):
                 go_back(25)
                 continue
-            if(lf == '1111' and x == 0 and y == 0 and (tn == 1 or tn == 3)):
-                x += 1
+            if(lf == '1111' and tdc == 0 and tnc == 0 and (tn == 1 or tn == 3)):
+                tdc += 1
                 turn_left(38)
                 time.sleep(1)
-            if(lf == '1111' and x == 1 and (tn == 1 or tn == 3)):
-                y += 1
+            if(lf == '1111' and tdc == 1 and (tn == 1 or tn == 3)):
+                tnc += 1
                 time.sleep(1)
-            if(lf == '1111' and y == 2 and tn == 1):
+            if(lf == '1111' and tnc == 2 and tn == 1):
                 stop()
                 time.sleep(0.5)
                 print("Arrived Table 1!")
                 break
-            if(lf == '1111' and y == 3 and tn == 3):
+            if(lf == '1111' and tnc == 3 and tn == 3):
                 stop()
                 time.sleep(0.2)
                 print("Arrived Table 3!")
                 break
-            if(lf == '1111' and x == 0 and y == 0 and (tn == 2 or tn == 4)):
+            if(lf == '1111' and tdc == 0 and tnc == 0 and (tn == 2 or tn == 4)):
                 x += 1
                 turn_right(32)
                 time.sleep(0.5)
-            if(lf == '1111' and x == 1 and (tn == 2 or tn == 4)):
+            if(lf == '1111' and tdc == 1 and (tn == 2 or tn == 4)):
                 y += 1
                 time.sleep(0.5)
-            if(lf == '1111' and y == 2 and tn == 2):
+            if(lf == '1111' and tnc == 2 and tn == 2):
                 stop()
                 print("Arrived Table 2!")
                 break
-            if(lf == '1111' and y == 3 and tn == 4):
+            if(lf == '1111' and tnc == 3 and tn == 4):
                 stop()
                 print("Arrived Table 4!")
                 break

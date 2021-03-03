@@ -224,15 +224,13 @@ def tracking():
                 continue
             
             if(lf=='0011'):
-            #             #set_speed(low_speed,low_speed)
                 turn_right(33)
                 continue
-        #         
+                 
             if(lf=='1100'): 
-        #             set_speed(mid_speed,mid_speed)
                 turn_left(33)
                 continue
-        #         
+                 
             else:
                 stop()
             

@@ -196,11 +196,11 @@ def tracking():
                 print("Arrived Table 3!")
                 break
             if(lf == '1111' and tdc == 0 and tnc == 0 and (tn == 2 or tn == 4)):
-                x += 1
+                tdc += 1
                 turn_right(32)
                 time.sleep(0.5)
             if(lf == '1111' and tdc == 1 and (tn == 2 or tn == 4)):
-                y += 1
+                tnc += 1
                 time.sleep(0.5)
             if(lf == '1111' and tnc == 2 and tn == 2):
                 stop()

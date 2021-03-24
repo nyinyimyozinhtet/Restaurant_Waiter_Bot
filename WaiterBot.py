@@ -12,7 +12,7 @@ enb = 4
 
 #PWM set up
 #setup mortor pin input output
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)  
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(in2,GPIO.OUT)
 GPIO.setup(in3,GPIO.OUT)
@@ -187,14 +187,23 @@ def tracking():
                 time.sleep(1)
             if(lf == '1111' and tnc == 2 and tn == 1):
                 stop()
-                time.sleep(0.5)
+                time.sleep(5)
                 print("Arrived Table 1!")
-                break
+                
             if(lf == '1111' and tnc == 3 and tn == 3):
                 stop()
-                time.sleep(0.2)
+                time.sleep(5)
                 print("Arrived Table 3!")
+
+            if(lf == '1111' and tnc == 4):
+                turn_right(32)
+                time.sleep(0.5)
+
+            if(lf == '1111' and tnc == 5):
+                go_forward(35)
+                time.sleep(0.5)
                 break
+############################################################################################            
             if(lf == '1111' and tdc == 0 and tnc == 0 and (tn == 2 or tn == 4)):
                 tdc += 1
                 turn_right(32)
@@ -207,8 +216,15 @@ def tracking():
                 print("Arrived Table 2!")
                 break
             if(lf == '1111' and tnc == 3 and tn == 4):
-                stop()
+                stop()  
                 print("Arrived Table 4!")
+                break
+            if(lf == '1111' and tnc == 4):
+                turn_left(32)
+                time.sleep(0.5)
+            if(lf == '1111' and tnc == 5):
+                go_forward(35)
+                time.sleep(0.5)
                 break
             
             if(lf=='0110'):
@@ -237,9 +253,9 @@ def tracking():
             
 if __name__ == '__main__':
     try:
-    #start to line follow
+    #start the bot
         tracking()
     except KeyboardInterrupt:
-    #robot car stop
+    #bot will stop
         destroy()
 
